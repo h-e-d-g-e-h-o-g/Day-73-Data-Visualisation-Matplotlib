@@ -1,0 +1,65 @@
+Creating DataFrame with the column names.
+We need to use names parameter.
+syntax:- df = pd.read_csv("Name_of_csv", names=["column_names"], header=0)
+header=0 indicates to replace the existing column_names.
+count() on DataFrame gives us the number of non-NaN values in each column.
+A timestamp is a datastructure that represents a specific point in time.
+Timestamp is particulary useful when we are working with time based data such as stock price.
+Pandas provides us a "to_datetime()" method to convert the particular data type into timestamp data type.
+We can convert the data of a column into timestamp.
+Syntax:- df["column_name"] = pd.to_datetime(df["column_name"])
+
+Now talking about Data Manipulation
+Sometimes, we want to blend the details of DataFrame.
+In that case, we can use "pivot()"
+With the help of pivot(), we can give each category, its own column.
+You need to specify correct argument to pivot().
+pivot(index='', column='', value='')
+NOTE:- fillna(value) method is used to fill NaN values with value specified in the paranthesis.
+
+reshaped_df.isna().values.any()
+reshaped_df.isna(), isna() creates a DataFrame of True and False, True representing the presence of NaN in the cell of reshaped_df.
+reshaped_df.isna().values, "values" attribute converts the DataFrame into Numpy Array of two-dimensional array of True and False.
+reshaped_df.isna().values.any(), "any()" checks whether there is any "True" value in the Numpy array.
+
+Matplotlib
+Matplotlib is a python library that is used for data visualisation.
+It is used to create charts and graphs to visualise the data and better understand it.
+To get the access to the index of the dataframe to provide values for x-axis, we can use "df.index".
+
+Now, we can use several methods to style our charts.
+figure() method, this method can be used to resize the dimension of the chart. 
+We need to provide value to argument "figsize" in the form of dimension.
+syntax:- plt.figure(figsize=(width, height))
+
+xticks() method, we can use to configure x-axis such as their fontsize.
+yticks() method, we can use to configure y-axis such as their fontsize.
+ylim() method is used to set the limit of value at y-axis.
+xlabel() and ylabel() method are used to give text to the x-axis and y-axis label respectively.
+we can also set the label's fontsize through fontsize keyword argument.
+we can change the linewidth of the line through "linewidth" keyword argument in the plot() method.
+we can also add the label to each line through "label" keyword argument in the plot() method.
+We can get access to the column name through "name" attribute of the "df[column].name".
+We can use legend method to give summary about the chart.
+NOTE:- In Data visualisation, legend is a small box on the plot that gives information about the different 
+elements in the charts.
+When the chart has multiple lines on it. We give each line a label what they represents.
+Legend can be used to associate the label to that line.
+
+Smoothing time series data.
+Most of the times, the time series data witness a lot of ups and downs in a short time.
+There comes a up then instantly then goes down. Due to this, we fail to understand the underlying trend and pattern 
+of the data, so in general, where it is heading.
+To make it easier and to remove or reduce the fluctuation or noise in the time series data, we use smoothing.
+In smoothing, we take group of nearby observations and calculate their average.
+Nearby observations means group of data points that are close to each other.
+Because of that, the sudden short ups and downs datapoints will be balanced out by the other data points.
+
+For example, you have time series data, you are getting data points on daily basis for a week.
+So, neaby data points are those that are coming from consecutive days.
+For example, if we take group of neaby observations 3, then first group will be Day1, Day2, Day3.
+Second one will be Day2, Day3, Day4 and third one will be Day3, Day4, Day5 and so on.
+So, the bigger the group is, the fluctuation in the data will be less.
+But if there will be excessive smoothing, then we will fail to understand important rapid changes.
+We can achieve smoothing through rolling() and mean().
+we need to specify the number of nearby observations in "window" argument of rolling() method.
